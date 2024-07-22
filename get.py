@@ -7,8 +7,10 @@ import matplotlib.pyplot as plt
 
 ROOT_DIR = Path(__file__).parent
 
-ox.settings.log_console = True
+# ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
+
+metro_area = "greaterla"
 
 def get_cities_in_county(county_name):
     county_boundary = ox.geocode_to_gdf(county_name + " County, United States")
@@ -18,7 +20,8 @@ def get_cities_in_county(county_name):
     subarea_names = subareas["name"].unique()
     return subarea_names
 
-file = open(ROOT_DIR / "bayareacities.txt", "r")
+file_name = metro_area + "cities.txt"
+file = open(ROOT_DIR / file_name, "r")
 text = file.read()
 cities = text.splitlines()
 # print(cities)
@@ -43,4 +46,11 @@ boundaries.to_file(ROOT_DIR / "boundaries/boundaries.shp")
 
 land = gpd.read_file(ROOT_DIR / "land/ne_10m_land.shp")
 clipped_boundaries = gpd.overlay(boundaries, land, how="intersection", keep_geom_type=False)
-clipped_boundaries.to_file(ROOT_DIR / "clipped_boundaries/clipped_boundaries.geojson", driver="GeoJSON")
+file_name = "clipped_boundaries/" + metro_area + ".geojson"
+clipped_boundaries.to_file(ROOT_DIR / file_name, driver="GeoJSON")
+
+
+
+# torrance
+# compton
+# west covina
