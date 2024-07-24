@@ -6,15 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         #map {
             margin-left: auto;
             margin-right: auto;
-            width: 800px;
+            width: auto;
             height: 600px;
         }
         #content {
             margin-left: auto;
             margin-right: auto;
+            padding: 5%;
         }
         input {
             margin-left: auto;
@@ -22,12 +26,20 @@
             width: 50%; 
             display: block;
         }
+        #score {
+            margin-left: 0px;
+            margin-right: left;
+            width: fit-content;
+            font-weight: bold;
+            font-size: larger;
+        }
     </style>
 </head>
 <body>
     <div id="content">
         <input type="text" (input)="checkInput()" id="userInput"> <br>
         <div id="map"></div>
+        <div id="score">0/182</div>
     </div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

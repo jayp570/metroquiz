@@ -37,6 +37,7 @@ for i in range(0, len(cities)):
 boundaries = pd.concat(boundaries, ignore_index=True)
 print(boundaries)
 boundaries.columns = [col[:10] for col in boundaries.columns]
+boundaries.to_csv(ROOT_DIR / "boundaries.csv")
 boundaries.to_file(ROOT_DIR / "boundaries.geojson", driver="GeoJSON")
 boundaries.to_file(ROOT_DIR / "boundaries/boundaries.shp")
 
