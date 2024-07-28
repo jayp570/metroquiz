@@ -6,7 +6,7 @@ var map = L.map('map', {
     // touchZoom: false,
     // keyboard: false, 
     // dragging: false
-}).setView([34, -118], 8.25); // Centered on San Francisco for example
+}).setView([37.7, -122.4], 8.25); // Centered on San Francisco for example
 
 // Add OpenStreetMap tile layer
 L.tileLayer('https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png', {
@@ -18,17 +18,20 @@ L.tileLayer('https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png',
 
 
 let cities = new Set()
+let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "bayarea"
+let metroarea = "greatersac"
 
 
-function populateCities() {
+function fillCities() {
     $.getJSON("clipped_boundaries/" + metroarea + ".geojson", function(data) {
         console.log(data)
         for(let feature of data.features) {
-            cities.add(feature.properties.name.toLowerCase())
+            let name = feature.properties.name
+            cities.add(name.toLowerCase())
+            citiesWithCase.set(name.toLowerCase(), name)
         }
     });
 }
@@ -43,11 +46,11 @@ function loadGeoJSON() {
                 if(correctCities.has(feature.properties.name.toLowerCase())) {
                     return {color: "green", weight: 0.5}
                 } else {
-                    return {color: "#222", weight: 0.25}
+                    return {color: "blue", weight: 0.25}
                 }
             },
             onEachFeature: function(feature, layer) {
-                if(correctCities.has(feature.properties.name.toLowerCase())) {
+                if(!correctCities.has(feature.properties.name.toLowerCase())) {
                     layer.bindPopup(feature.properties.name)
                 }
             }
@@ -60,7 +63,7 @@ function updateHTML() {
     document.getElementById("score").innerHTML = `${correctCities.size}/${correctCities.size + cities.size}`
 }
 
-populateCities()
+fillCities()
 loadGeoJSON()
 
 $('#userInput').keyup(function() {
@@ -69,6 +72,8 @@ $('#userInput').keyup(function() {
         correctCities.add(input)
         cities.delete(input)
         userInput.value = ""
+        let html = `<span>${correctCities.size}. ${citiesWithCase.get(input)}</span> <br>`
+        document.getElementById("citiesList").innerHTML = html + document.getElementById("citiesList").innerHTML
         loadGeoJSON()
         updateHTML()
     }

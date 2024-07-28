@@ -10,7 +10,7 @@ ROOT_DIR = Path(__file__).parent
 # ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
 
-metro_area = "greaterla"
+metro_area = "greatersac"
 
 def get_cities_in_county(county_name):
     county_boundary = ox.geocode_to_gdf(county_name + " County, United States")
@@ -20,7 +20,7 @@ def get_cities_in_county(county_name):
     subarea_names = subareas["name"].unique()
     return subarea_names
 
-file_name = metro_area + "cities.txt"
+file_name = "citylists/" + metro_area + "cities.txt"
 file = open(ROOT_DIR / file_name, "r")
 text = file.read()
 cities = text.splitlines()
