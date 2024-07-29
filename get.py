@@ -10,7 +10,7 @@ ROOT_DIR = Path(__file__).parent
 # ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
 
-metro_area = "greatersac"
+metro_area = "seattlemetroarea"
 
 def get_cities_in_county(county_name):
     county_boundary = ox.geocode_to_gdf(county_name + " County, United States")
@@ -30,7 +30,7 @@ boundaries = []
 for i in range(0, len(cities)):
     city = cities[i]
     try:
-        city_gdf = ox.geocode_to_gdf(city + ", California, United States")
+        city_gdf = ox.geocode_to_gdf(city + ", Washington, United States")
         boundaries.append(city_gdf)
     except Exception as e:
         print(f"Failed to get boundary for {city}: {e}")
@@ -51,7 +51,3 @@ file_name = "clipped_boundaries/" + metro_area + ".geojson"
 clipped_boundaries.to_file(ROOT_DIR / file_name, driver="GeoJSON")
 
 
-
-# torrance
-# compton
-# west covina

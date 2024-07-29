@@ -1,0 +1,60 @@
+Seattle
+Tacoma
+Bellevue
+Kent
+Everett
+Renton
+Auburn
+Redmond
+Lakewood
+Arlington
+Bainbridge Island
+Beaux Arts Village
+Bonney Lake
+Bothell
+Bremerton
+Brier
+Buckley
+Burien
+Covington
+Des Moines
+Duvall
+Enumclaw
+Edmonds
+Federal Way
+Gig Harbor
+Gold Bar
+Granite Falls
+Issaquah
+Kenmore
+Kirkland
+Lake Forest Park
+Lake Stevens
+Lynnwood
+Maple Valley
+Marysville
+Mercer Island
+Mill Creek
+Monroe
+Mountlake Terrace
+Mount Vernon
+Mukilteo
+Newcastle
+Normandy Park
+North Bend
+Olympia
+Orting
+Puyallup
+Poulsbo
+Sammamish
+SeaTac
+Shoreline
+Silverdale
+Snohomish, Snohomish County
+Snoqualmie
+Stanwood
+Sultan
+Sumner
+Tukwila
+Woodinville
+Woodway

@@ -22,7 +22,7 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "greatersac"
+let metroarea = "seattlemetroarea"
 
 
 function fillCities() {
@@ -46,7 +46,7 @@ function loadGeoJSON() {
                 if(correctCities.has(feature.properties.name.toLowerCase())) {
                     return {color: "green", weight: 0.5}
                 } else {
-                    return {color: "blue", weight: 0.25}
+                    return {color: "black", weight: 0.25}
                 }
             },
             onEachFeature: function(feature, layer) {
@@ -59,22 +59,40 @@ function loadGeoJSON() {
 
 }
 
-function updateHTML() {
-    document.getElementById("score").innerHTML = `${correctCities.size}/${correctCities.size + cities.size}`
-}
-
 fillCities()
 loadGeoJSON()
+
+
+
+
+
+function updateHTML(input) {
+    document.getElementById("score").innerHTML = `${correctCities.size}/${correctCities.size + cities.size}`
+    userInput.value = ""
+    let html = `<span>${correctCities.size}. ${citiesWithCase.get(input)}</span> <br>`
+    document.getElementById("citiesList").innerHTML = html + document.getElementById("citiesList").innerHTML
+    if(correctCities.size > 5) {
+        document.getElementById("expandCollapseButton").style.display = "block"
+    }
+}
+
+function expandCollapse() {
+    citiesListStyle = document.getElementById("citiesList").style
+    if(citiesListStyle.maxHeight != "none") {
+        citiesListStyle.maxHeight = "none"
+        document.getElementById("expandCollapseButton").innerHTML = "(-)"
+    } else {
+        citiesListStyle.maxHeight = "6.3em"
+        document.getElementById("expandCollapseButton").innerHTML = "(+)"
+    }
+}
 
 $('#userInput').keyup(function() {
     let input = userInput.value.toLowerCase()
     if(cities.has(input) && !correctCities.has(input)) {
         correctCities.add(input)
         cities.delete(input)
-        userInput.value = ""
-        let html = `<span>${correctCities.size}. ${citiesWithCase.get(input)}</span> <br>`
-        document.getElementById("citiesList").innerHTML = html + document.getElementById("citiesList").innerHTML
         loadGeoJSON()
-        updateHTML()
+        updateHTML(input)
     }
 })
