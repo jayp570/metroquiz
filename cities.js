@@ -22,7 +22,8 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "seattlemetroarea"
+let metroarea = "bayarea"
+let populations = {}
 
 
 function fillCities() {
@@ -34,6 +35,12 @@ function fillCities() {
             citiesWithCase.set(name.toLowerCase(), name)
         }
     });
+}
+
+function loadPopulations() {
+    $.getJSON("populations/" + metroarea + ".json", function(data) {
+        populations = data
+    })
 }
 
 function loadGeoJSON() {
@@ -61,6 +68,7 @@ function loadGeoJSON() {
 
 fillCities()
 loadGeoJSON()
+loadPopulations()
 
 
 
@@ -69,7 +77,9 @@ loadGeoJSON()
 function updateHTML(input) {
     document.getElementById("score").innerHTML = `${correctCities.size}/${correctCities.size + cities.size}`
     userInput.value = ""
-    let html = `<span>${correctCities.size}. ${citiesWithCase.get(input)}</span> <br>`
+    nameWithCase = citiesWithCase.get(input)
+    population = populations[nameWithCase]
+    let html = `<span>${correctCities.size}. ${nameWithCase} (${population})</span> <br>`
     document.getElementById("citiesList").innerHTML = html + document.getElementById("citiesList").innerHTML
     if(correctCities.size > 5) {
         document.getElementById("expandCollapseButton").style.display = "block"
