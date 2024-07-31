@@ -3,6 +3,7 @@ import pandas as pd
 import geopandas as gpd
 from pathlib import Path
 import matplotlib.pyplot as plt
+from qwikidata.sparql import return_sparql_query_results
 import geonamescache
 import json
 
@@ -25,27 +26,52 @@ cities = text.splitlines()
 
 
 
-def get_population(name):
-    gc = geonamescache.GeonamesCache()
-    cities = gc.get_cities()
-    for city_id, city_data in cities.items():
-        if city_data["name"].lower() == name.lower() and city_data["admin1code"] == state_code:
-            return city_data.get("population", "Pop data not available")
-    return "city not found"
+def get_populations(osm_ids):
+    osm_ids_formatted = ' '.join([f'"{osm_id}"^^xsd:string' for osm_id in osm_ids])
+    query = f"""
+    SELECT ?osm_id ?population WHERE {{
+        VALUES ?osm_id {{ {osm_ids_formatted} }} .
+        ?city wdt:P402 ?osm_id .
+        ?city wdt:P1082 ?population .
+    }}
+    """
+    result = return_sparql_query_results(query)
+    populations = result["results"]["bindings"]
+    population_data = {}
+    try:
+        for item in populations:
+            osm_id = item["osm_id"]["value"]
+            population = item["population"]["value"]
+            population_data.update({osm_id: population})
+        return population_data
+    except Exception as e:
+        print("Error:", e)
+        return None
+
 
 # go through every city --> get a dataframe from osmnx with the polygon
 boundaries = []
 populations = {}
+names = {}
 for i in range(0, len(cities)):
     city = cities[i]
     try:
         city_gdf = ox.geocode_to_gdf(city + ", " + state + ", " + country)
         boundaries.append(city_gdf)
         name = city_gdf["name"].loc[city_gdf.index[0]]
-        pop = get_population(name)
-        populations.update({name: pop})
+        osm_id = city_gdf["osm_id"].loc[city_gdf.index[0]]
+        names.update({osm_id: name})
     except Exception as e:
         print(f"Failed to get boundary or population for {city}: {e}")
+
+
+populations_osm_id = get_populations(names.keys())
+print(populations_osm_id)
+for osm_id in names.keys():
+    try:
+        populations.update({names[osm_id]: populations_osm_id[str(osm_id)]})
+    except Exception as e:
+        print("Error:", e)
 
 # condense all of those polys into one data frame
 boundaries = pd.concat(boundaries, ignore_index=True) 
@@ -58,6 +84,19 @@ boundaries.to_file(ROOT_DIR / "boundaries/boundaries.shp")
 file_name = "populations/" + metro_area + ".json"
 with open(ROOT_DIR / file_name, "w") as outfile:
     json.dump(populations, outfile)
+
+
+# there are currently no populations for the following citieshealdsburg
+# sebastopol
+# sonoma
+# calistoga
+# st. helena
+# suisun city
+# cloverdale
+# yountville
+# this is because the osmnx query brings up a way instead of a relation
+# the population sqarql query relies on the osm RELATION id
+# fix this
 
 # gdf = gpd.read_file(ROOT_DIR / "boundaries/boundaries.shp")
 # gdf.plot()
