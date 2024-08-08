@@ -37,23 +37,23 @@ Sausalito
 Brentwood
 Healdsburg
 Petaluma, Sonoma County
-Sebastopol
+Sebastopol, Sonoma County, 95472
 Brisbane
 Hercules
 Piedmont
-Sonoma, Sonoma County
+Sonoma, Sonoma County, 95476
 Burlingame
 Hillsborough
 Pinole
 South San Francisco
-Calistoga
+Calistoga, Napa County
 Lafayette
 Pittsburg
 St. Helena
 Campbell
 Larkspur
 Pleasant Hill
-Suisun City
+Suisun City, Solano County, 94585
 Clayton
 Livermore
 Pleasanton

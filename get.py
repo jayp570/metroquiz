@@ -38,15 +38,11 @@ def get_populations(osm_ids):
     result = return_sparql_query_results(query)
     populations = result["results"]["bindings"]
     population_data = {}
-    try:
-        for item in populations:
-            osm_id = item["osm_id"]["value"]
-            population = item["population"]["value"]
-            population_data.update({osm_id: population})
-        return population_data
-    except Exception as e:
-        print("Error:", e)
-        return None
+    for item in populations:
+        osm_id = item["osm_id"]["value"]
+        population = item["population"]["value"]
+        population_data.update({osm_id: population})
+    return population_data
 
 
 # go through every city --> get a dataframe from osmnx with the polygon
@@ -56,7 +52,8 @@ names = {}
 for i in range(0, len(cities)):
     city = cities[i]
     try:
-        city_gdf = ox.geocode_to_gdf(city + ", " + state + ", " + country)
+        query = city + ", " + state + ", " + country
+        city_gdf = ox.geocode_to_gdf(query)
         boundaries.append(city_gdf)
         name = city_gdf["name"].loc[city_gdf.index[0]]
         osm_id = city_gdf["osm_id"].loc[city_gdf.index[0]]
@@ -71,7 +68,7 @@ for osm_id in names.keys():
     try:
         populations.update({names[osm_id]: populations_osm_id[str(osm_id)]})
     except Exception as e:
-        print("Error:", e)
+        print("Error with matching names to population:", e, names[osm_id])
 
 # condense all of those polys into one data frame
 boundaries = pd.concat(boundaries, ignore_index=True) 
