@@ -94,6 +94,7 @@ with open(ROOT_DIR / file_name, "w") as outfile:
 # this is because the osmnx query brings up a way instead of a relation
 # the population sqarql query relies on the osm RELATION id
 # fix this
+# ^^^^^^^^ maybe try overpass api
 
 # gdf = gpd.read_file(ROOT_DIR / "boundaries/boundaries.shp")
 # gdf.plot()
