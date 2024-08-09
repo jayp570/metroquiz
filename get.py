@@ -13,9 +13,9 @@ ROOT_DIR = Path(__file__).parent
 # ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
 
-metro_area = "bayarea"
-state = "California"
-state_code = "CA"
+metro_area = "seattlemetroarea"
+state = "Washington"
+state_code = "WA"
 country = "United States"
 
 file_name = "citylists/" + metro_area + "cities.txt"
@@ -44,6 +44,25 @@ def get_populations(osm_ids):
         population_data.update({osm_id: population})
     return population_data
 
+def get_gdf(query):
+    num = 1
+    city_gdf = ox.geocode_to_gdf(query, which_result=num)
+    original = city_gdf
+    osm_type = city_gdf["osm_type"].loc[city_gdf.index[0]]
+    # sometimes, the top result will be a way
+    # make sure that it's a relation by getting subsequent results
+    while osm_type != "relation":
+        try:
+            num += 1
+            city_gdf = ox.geocode_to_gdf(query, which_result=num)
+            osm_type = city_gdf["osm_type"].loc[city_gdf.index[0]]
+        except Exception as e:
+            print(f"Couldn't find relation for {query}: {e}")
+            return original
+    return city_gdf
+
+
+
 
 # go through every city --> get a dataframe from osmnx with the polygon
 boundaries = []
@@ -53,7 +72,7 @@ for i in range(0, len(cities)):
     city = cities[i]
     try:
         query = city + ", " + state + ", " + country
-        city_gdf = ox.geocode_to_gdf(query)
+        city_gdf = get_gdf(query)
         boundaries.append(city_gdf)
         name = city_gdf["name"].loc[city_gdf.index[0]]
         osm_id = city_gdf["osm_id"].loc[city_gdf.index[0]]
@@ -61,9 +80,8 @@ for i in range(0, len(cities)):
     except Exception as e:
         print(f"Failed to get boundary or population for {city}: {e}")
 
-
+# get populations for all cities and then merge the id: names dictionary with the id: pop dictionary
 populations_osm_id = get_populations(names.keys())
-print(populations_osm_id)
 for osm_id in names.keys():
     try:
         populations.update({names[osm_id]: populations_osm_id[str(osm_id)]})
@@ -82,23 +100,6 @@ file_name = "populations/" + metro_area + ".json"
 with open(ROOT_DIR / file_name, "w") as outfile:
     json.dump(populations, outfile)
 
-
-# there are currently no populations for the following citieshealdsburg
-# sebastopol
-# sonoma
-# calistoga
-# st. helena
-# suisun city
-# cloverdale
-# yountville
-# this is because the osmnx query brings up a way instead of a relation
-# the population sqarql query relies on the osm RELATION id
-# fix this
-# ^^^^^^^^ maybe try overpass api
-
-# gdf = gpd.read_file(ROOT_DIR / "boundaries/boundaries.shp")
-# gdf.plot()
-# plt.show()
 
 # get the intersection between city polygons and earth's land polygon to clip off parts of city in water
 land = gpd.read_file(ROOT_DIR / "land/ne_10m_land.shp")

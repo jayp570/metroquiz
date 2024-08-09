@@ -22,7 +22,7 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "bayarea"
+let metroarea = "seattlemetroarea"
 let populations = {}
 
 
