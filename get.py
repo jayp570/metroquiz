@@ -13,9 +13,9 @@ ROOT_DIR = Path(__file__).parent
 # ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
 
-metro_area = "seattlemetroarea"
-state = "Washington"
-state_code = "WA"
+metro_area = "greaterla"
+state = "California"
+state_code = "CA"
 country = "United States"
 
 file_name = "citylists/" + metro_area + "cities.txt"
@@ -82,6 +82,7 @@ for i in range(0, len(cities)):
 
 # get populations for all cities and then merge the id: names dictionary with the id: pop dictionary
 populations_osm_id = get_populations(names.keys())
+print(populations_osm_id)
 for osm_id in names.keys():
     try:
         populations.update({names[osm_id]: populations_osm_id[str(osm_id)]})

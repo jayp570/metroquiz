@@ -22,7 +22,7 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "seattlemetroarea"
+let metroarea = "greaterla"
 let populations = {}
 
 
@@ -75,13 +75,15 @@ loadPopulations()
 
 
 function updateHTML(input) {
+    let citiesList = document.getElementById("citiesList")
     document.getElementById("score").innerHTML = `${correctCities.size}/${correctCities.size + cities.size}`
     userInput.value = ""
     nameWithCase = citiesWithCase.get(input)
-    population = populations[nameWithCase]
-    let html = `<span>${correctCities.size}. ${nameWithCase} (${population})</span> <br>`
-    document.getElementById("citiesList").innerHTML = html + document.getElementById("citiesList").innerHTML
-    if(correctCities.size > 5) {
+    population = parseInt(populations[nameWithCase])
+    popStr = population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    let html = `<span>${correctCities.size}. ${nameWithCase} <span id="population">(${popStr})</span></span> <br>`
+    citiesList.innerHTML = html + document.getElementById("citiesList").innerHTML
+    if(citiesList.offsetHeight > 100) {
         document.getElementById("expandCollapseButton").style.display = "block"
     }
 }

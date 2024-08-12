@@ -5,3 +5,12 @@ SO, I HAVE TO ADD POPULATIONS MANUALLY
 Bay Area:
 "Calistoga": "5228",
 "St. Helena": "5196"
+
+Greater LA:
+"Rosemead": "51185",
+"La Quinta": "37467",
+"Baldwin Park": "72176",
+"South El Monte": "20116",
+"Palm Desert": "51583",
+"Palm Springs": "44575",
+"Fillmore": "15598"
