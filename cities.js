@@ -22,7 +22,7 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "greaterla"
+let metroarea = "bayarea"
 let populations = {}
 
 
@@ -57,7 +57,7 @@ function loadGeoJSON() {
                 }
             },
             onEachFeature: function(feature, layer) {
-                if(!correctCities.has(feature.properties.name.toLowerCase())) {
+                if(correctCities.has(feature.properties.name.toLowerCase())) {
                     layer.bindPopup(feature.properties.name)
                 }
             }

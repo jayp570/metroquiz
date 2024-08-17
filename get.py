@@ -13,9 +13,9 @@ ROOT_DIR = Path(__file__).parent
 # ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
 
-metro_area = "greaterla"
-state = "California"
-state_code = "CA"
+metro_area = "greaterhouston"
+state = "Texas"
+state_code = "TX"
 country = "United States"
 
 file_name = "citylists/" + metro_area + "cities.txt"
