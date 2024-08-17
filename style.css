@@ -1,0 +1,43 @@
+body {
+    font-family: "Lato", sans-serif;
+    color: #222;
+    background-color: "rgb(247, 247, 247)";
+}
+
+a:link {
+    color: rgb(54, 212, 212);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(74, 143, 143)
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    width: auto;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#quizRow {
+    display: flex;
+}
+
+#quiz {
+    flex: 1;
+    padding: 1.5%;
+}
+
+#footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#copyright {
+    color: #555;
+    font-size: small;
+}

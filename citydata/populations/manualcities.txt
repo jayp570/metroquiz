@@ -14,3 +14,21 @@ Greater LA:
 "Palm Desert": "51583",
 "Palm Springs": "44575",
 "Fillmore": "15598"
+
+Greater Houston:
+"Plantersville": "483"
+boundary:
+{ "type": "Feature",
+         "geometry": {
+           "type": "Polygon",
+           "coordinates": [
+             [ [-95.0, 30.0], [-95.0, 31.0], [-94.0, 31.0], [-94.0, 30.0], [-95.0, 30.0] ]
+             ]
+         },
+         "properties": {
+           "prop0": "value0",
+           "prop1": {"this": "that"},
+           "name": "Example"
+           }
+         }
+^^^^ currently has a huge area, make sure to fix the polygon to make it generally a square around plantersville
