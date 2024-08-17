@@ -4,7 +4,6 @@ import geopandas as gpd
 from pathlib import Path
 import matplotlib.pyplot as plt
 from qwikidata.sparql import return_sparql_query_results
-import geonamescache
 import json
 
 

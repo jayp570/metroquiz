@@ -27,7 +27,7 @@ let populations = {}
 
 
 function fillCities() {
-    $.getJSON("clipped_boundaries/" + metroarea + ".geojson", function(data) {
+    $.getJSON("../../citydata/clipped_boundaries/" + metroarea + ".geojson", function(data) {
         console.log(data)
         for(let feature of data.features) {
             let name = feature.properties.name
@@ -38,14 +38,14 @@ function fillCities() {
 }
 
 function loadPopulations() {
-    $.getJSON("populations/" + metroarea + ".json", function(data) {
+    $.getJSON("../../citydata/populations/" + metroarea + ".json", function(data) {
         populations = data
     })
 }
 
 function loadGeoJSON() {
     // Load GeoJSON data
-    $.getJSON("clipped_boundaries/" + metroarea + ".geojson", function(data) {
+    $.getJSON("../../citydata/clipped_boundaries/" + metroarea + ".geojson", function(data) {
         // Add GeoJSON layer to the map
         geoJSONLayer.clearLayers()
         L.geoJson(data, {
