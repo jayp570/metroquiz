@@ -30,6 +30,21 @@ a:hover {
 #quiz {
     flex: 1;
     padding: 1.5%;
+    position: relative;
+}
+
+#quiz h2 {
+    margin-bottom: 0px;
+}
+
+#quiz h3 {
+    margin-top: 7px;
+    font-size: 1.1em;
+}
+
+#populationDesc {
+    position: absolute;
+    bottom: -1em;
 }
 
 #footer {

@@ -6,7 +6,7 @@ var map = L.map('map', {
     // touchZoom: false,
     // keyboard: false, 
     // dragging: false
-}).setView([37.7, -122.4], 8.25); // Centered on San Francisco for example
+}).setView([34, -117.2], 8.25); // Centered on LA for example
 
 // Add OpenStreetMap tile layer
 L.tileLayer('https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png', {

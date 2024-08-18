@@ -22,7 +22,7 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "seattlemetroarea"
+let metroarea = "bayarea"
 let populations = {}
 
 
@@ -108,3 +108,8 @@ $('#userInput').keyup(function() {
         updateHTML(input)
     }
 })
+
+
+
+// feature to add - population of all guessed cities as a percentage of the metro areas population
+// make json to store total populations of metro areas
