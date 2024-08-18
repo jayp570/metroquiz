@@ -29,7 +29,7 @@ a:hover {
 
 #quiz {
     flex: 1;
-    padding: 1.5%;
+    margin: 1.5%;
     position: relative;
 }
 
@@ -44,7 +44,7 @@ a:hover {
 
 #populationDesc {
     position: absolute;
-    bottom: -1em;
+    bottom: -2em;
 }
 
 #footer {
