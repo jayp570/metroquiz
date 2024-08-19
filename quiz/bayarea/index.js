@@ -24,6 +24,8 @@ let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
 let metroarea = "bayarea"
 let populations = {}
+let totalPopulation = 0
+let populationSum = 0
 
 
 function fillCities() {
@@ -40,6 +42,12 @@ function fillCities() {
 function loadPopulations() {
     $.getJSON("../../citydata/populations/" + metroarea + ".json", function(data) {
         populations = data
+        console.log(populations)
+        console.log(Object.values(populations))
+        for(let pop of Object.values(populations)) {
+            totalPopulation += parseInt(pop)
+        }
+        console.log(totalPopulation)
     })
 }
 
@@ -77,12 +85,19 @@ loadPopulations()
 function updateHTML(input) {
     let citiesList = document.getElementById("citiesList")
     document.getElementById("score").innerHTML = `${correctCities.size}/${correctCities.size + cities.size}`
+
     userInput.value = ""
     nameWithCase = citiesWithCase.get(input)
+
     population = parseInt(populations[nameWithCase])
+    populationSum += population
+    percentage = (100*populationSum/totalPopulation).toFixed(2)
     popStr = population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    popSumStr = populationSum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
     let html = `<span>${correctCities.size}. ${nameWithCase} <span id="population">(${popStr})</span></span> <br>`
     citiesList.innerHTML = html + document.getElementById("citiesList").innerHTML
+    document.getElementById("percentage").innerHTML = `<b>${popSumStr}</b> people (<b>${percentage}%</b> of this area's population)`
     if(citiesList.offsetHeight > 100) {
         document.getElementById("expandCollapseButton").style.display = "block"
     }

@@ -8,7 +8,6 @@ Langley City
 Langley Township
 Lions Bay
 Maple Ridge
-New Westminster, Metro Vancouver Regional District, British Columbia, V3L 1K3
 North Vancouver
 Pitt Meadows
 Port Coquitlam
@@ -19,3 +18,4 @@ Tsawwassen
 Vancouver
 West Vancouver
 White Rock
+New Westminster

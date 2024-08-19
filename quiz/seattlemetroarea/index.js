@@ -6,7 +6,7 @@ var map = L.map('map', {
     // touchZoom: false,
     // keyboard: false, 
     // dragging: false
-}).setView([34, -117], 8.25); // Centered on San Francisco for example
+}).setView([47.6, -122.3], 8.25); // Centered on San Francisco for example
 
 // Add OpenStreetMap tile layer
 L.tileLayer('https://a.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}@2x.png', {
@@ -22,7 +22,7 @@ let citiesWithCase = new Map()
 let correctCities = new Set()
 let userInput = document.getElementById("userInput")
 let geoJSONLayer = L.layerGroup().addTo(map)
-let metroarea = "greaterla"
+let metroarea = "seattlemetroarea"
 let populations = {}
 let totalPopulation = 0
 let populationSum = 0

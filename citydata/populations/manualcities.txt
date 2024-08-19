@@ -32,3 +32,14 @@ boundary:
            }
          }
 ^^^^ currently has a huge area, make sure to fix the polygon to make it generally a square around plantersville
+
+Metro Vancouver
+"Anmore": "2533",
+"Belcarra": "729",
+"Bowen Island": "4181",
+"Lions Bay": "1353",
+"Port Coquitlam": "67151",
+"Tsawwassen": "21588",
+"New Westminster": "88945"
+boundary for new westminster:
+https://polygons.openstreetmap.fr/get_geojson.py?id=1377803&params=0

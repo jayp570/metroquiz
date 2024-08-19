@@ -8,88 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../quiz.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <style>
-        #map {
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-            height: 600px;
-            border: 1px solid #bbb;
-        }
-        #content {
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 5%;
-            padding-right: 5%;
-            text-align: center;
-            width: 75%;
-            margin-bottom: 40px;
-        }
-        input {
-            margin-left: auto;
-            margin-right: auto;
-            width: 40%;
-            padding: 5px; 
-            font-size: large;
-            border: 1px solid #bbb;
-            border-radius: 5px;
-            display: block;
-            transition-duration: 0.1s;
-            outline: 0;
-        }
-        input:focus {
-            border: 1px solid rgb(23, 151, 151);
-        }
-        #score {
-            margin-left: auto;
-            margin-right: auto;
-            width: fit-content;
-            font-weight: bold;
-            font-size: larger;
-        }
-        #citiesContainer {
-            border: 1px solid #bbb;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-            padding-bottom: 20px;
-            border-radius: 5px;
-        }
-        #citiesList {
-            width: 40%;
-            text-align: left;
-            margin-left: auto;
-            margin-right: auto;
-            max-height: 6.3em;
-            overflow-y: hidden;
-        }
-        #expandCollapseButton {
-            background-color: white;
-            border: none;
-            margin-top: 20px;
-            display: none;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            transition-duration: 0.1s;
-            font-size: large;
-            color: #222;
-        }
-        #expandCollapseButton:hover {
-            color: rgb(23, 151, 151);
-        }
-        #population {
-            font-size: smaller;
-        }
-    </style>
 </head>
 <body>
     <div id="content">
         <h1>How many Bay Area cities can you name?</h1>
         <input type="text" (input)="checkInput()" id="userInput"> <br>
         <div id="map"></div>
-        <div id="score">0/101</div> <br>
+        <div id="score">0/101</div> <div id="percentage"><b>0</b> people (<b>0%</b> of this area's population)</div> <br>
         <div id="citiesContainer">
             <h2 style="display: inline-block;">My Cities</h2>
             <div id="citiesList">
