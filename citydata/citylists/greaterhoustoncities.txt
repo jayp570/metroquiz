@@ -86,7 +86,6 @@ Panorama Village
 Pattison
 Patton Village
 Piney Point Village
-Plantersville
 Plum Grove
 Prairie View
 Richwood
@@ -111,6 +110,7 @@ Pine Island
 Quintana
 Roman Forest
 San Felipe
+Tiki Island
 Stagecoach
 Thompsons
 Woodloch
@@ -120,4 +120,3 @@ Fairchilds
 Hillcrest
 Jones Creek
 Pleak
-Tiki Island

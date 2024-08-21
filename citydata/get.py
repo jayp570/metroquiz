@@ -12,10 +12,10 @@ ROOT_DIR = Path(__file__).parent
 # ox.settings.log_console = True
 ox.settings.max_query_area_size = 25e12
 
-metro_area = "metrovancouver"
-state = "British Columbia"
-state_code = "BC"
-country = "Canada"
+metro_area = "greaterhouston"
+state = "Texas"
+state_code = "TX"
+country = "United States"
 
 file_name = "citylists/" + metro_area + "cities.txt"
 file = open(ROOT_DIR / file_name, "r")

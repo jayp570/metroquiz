@@ -18,19 +18,28 @@ Greater LA:
 Greater Houston:
 "Plantersville": "483"
 boundary:
-{ "type": "Feature",
-         "geometry": {
-           "type": "Polygon",
-           "coordinates": [
-             [ [-95.0, 30.0], [-95.0, 31.0], [-94.0, 31.0], [-94.0, 30.0], [-95.0, 30.0] ]
-             ]
-         },
-         "properties": {
-           "prop0": "value0",
-           "prop1": {"this": "that"},
-           "name": "Example"
-           }
-         }
+{ "type": "Feature", "properties": { "bbox_north": 30.073648, "bbox_south": 30.046947, "bbox_east": -95.904583, "bbox_west": -95.943608, "place_id": 293762332, "osm_type": "relation", "osm_id": 115369, "lat": 30.0640003, "lon": -95.9250516, "class": "boundary", "type": "administrative", "place_rank": 16, "importance": 0.44782895083352503, "addresstyp": "city", "name": "Plantersville", "display_na": "Plantersville, Texas, United States", "featurecla": "Land", "scalerank": 0.0, "min_zoom": 0.0 }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [
+        [
+          -95.8619,
+          30.333
+        ],
+        [
+          -95.8619,
+          30.363
+        ],
+        [
+          -95.8319,
+          30.363
+        ],
+        [
+          -95.8319,
+          30.333
+        ],
+        [
+          -95.8619,
+          30.333
+        ]
+      ] ] ] } },
 ^^^^ currently has a huge area, make sure to fix the polygon to make it generally a square around plantersville
 
 Metro Vancouver

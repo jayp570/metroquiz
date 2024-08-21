@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How many Greater Houston cities can you name?</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../quiz.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="content">
+        <h1>How many Greater Houston cities can you name?</h1>
+        <input type="text" (input)="checkInput()" id="userInput"> <br>
+        <div id="map"></div>
+        <div id="score">0/122</div> <div id="percentage"><b>0</b> people (<b>0%</b> of this area's population)</div> <br>
+        <div id="citiesContainer">
+            <h2 style="display: inline-block;">My Cities</h2>
+            <div id="citiesList">
+            </div>
+            <button id="expandCollapseButton" onclick="expandCollapse()">(+)</button> 
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
