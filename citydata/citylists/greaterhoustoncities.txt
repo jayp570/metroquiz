@@ -110,7 +110,6 @@ Pine Island
 Quintana
 Roman Forest
 San Felipe
-Tiki Island
 Stagecoach
 Thompsons
 Woodloch
@@ -120,3 +119,4 @@ Fairchilds
 Hillcrest
 Jones Creek
 Pleak
+Tiki Island

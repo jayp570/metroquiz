@@ -104,6 +104,12 @@ with open(ROOT_DIR / file_name, "w") as outfile:
 # get the intersection between city polygons and earth's land polygon to clip off parts of city in water
 land = gpd.read_file(ROOT_DIR / "land/ne_10m_land.shp")
 clipped_boundaries = gpd.overlay(boundaries, land, how="intersection", keep_geom_type=False)
+# ensure that entire cities werent clipped out
+# add them from the unclipped boundaries to the clipped boundaries for export
+differences = list(set(boundaries["name"]) - set(clipped_boundaries["name"]))
+for name in differences:
+    row = boundaries[boundaries["name"] == name]
+    clipped_boundaries = pd.concat([clipped_boundaries, row], ignore_index=True)
 file_name = "clipped_boundaries/" + metro_area + ".geojson"
 clipped_boundaries.to_file(ROOT_DIR / file_name, driver="GeoJSON")
 
